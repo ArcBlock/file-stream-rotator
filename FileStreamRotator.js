@@ -313,7 +313,7 @@ function createCurrentSymLink(logfile, name, verbose) {
     } catch (err) {
         if(err && err.code == "ENOENT") {
             try {
-                fs.symlinkSync(logfileName, current)
+                fs.symlinkSync(path.join(path.dirname(current), logfileName), current)
             } catch (e) {
                 if (verbose) {
                     console.error(new Date(), "[FileStreamRotator] Could not create symlink file: ", current, ' -> ', logfileName);
